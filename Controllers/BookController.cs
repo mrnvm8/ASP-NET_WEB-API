@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASP_NET_WEB_API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class BookController : ControllerBase
 {
     //Create an instance of the Interface repository

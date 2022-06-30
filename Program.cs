@@ -4,12 +4,26 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Add services for Mysql to be used in runtime
 builder.Services.AddDbContext<DBAccess>(options => 
         options.UseMySQL(builder.Configuration.GetConnectionString("DataContext")));
+
+//To Enable cross origin resource sharing(CORS) with angular app
+//Enable CORS
+// builder.Services.AddCors(options => {
+//     options.AddPolicy(name: myAllowSpecificOrigins,
+//     builder =>
+//     {
+//         builder.WithOrigins("http://localhost:4200")
+//         .AllowAnyMethod()
+//         .AllowAnyHeader();
+//     });
+// });
+
 
 // Registering the BookRepository for use at runtime
 // Dependency Injection
@@ -29,6 +43,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//Tell App to use CORS
+//app.UseCors(myAllowSpecificOrigins);
 
 app.UseAuthorization();
 
